@@ -79,7 +79,7 @@ export default function Home() {
             </h1>
             <h1
               ref={textThree}
-              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+              className="text-xl tablet:text-3xl laptop:text-3xl laptopl:text-4xl p-1 tablet:p-2 w-full laptop:w-4/5 opacity-60"
             >
               {data.headerTaglineThree}
             </h1>
@@ -93,24 +93,53 @@ export default function Home() {
 
           <Socials className="mt-2 laptop:mt-5" />
         </div>
+        <div className="mt-5 laptop:mt-20 p-2 laptop:p-0" ref={aboutRef}>
+          <h1 className="tablet:m-10 text-2xl font-bold">All About Me</h1>
+          <div className="tablet:m-10 mt-2 flex flex-col laptop:flex-row items-start gap-10">
+            <p className="text-xl laptop:text-3xl w-full laptop:w-3/5">
+              {data.aboutpara}
+            </p>
+            <div className="w-full laptop:w-2/5 flex justify-center laptop:justify-end">
+              <div className="relative">
+                <div className="absolute inset-0 rounded-2xl blur-3xl opacity-50" style={{ background: "radial-gradient(ellipse at center, #f5c842 0%, #e8a800 60%, transparent 100%)", transform: "scale(1.4)" }} />
+                <img
+                  src="/me1.png"
+                  alt="Nathan"
+                  className="relative rounded-2xl object-cover w-72 laptop:w-full max-w-sm"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
-          <h1 className="text-2xl text-bold">Work.</h1>
+          <h1 className="text-2xl font-bold">Video Production</h1>
 
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            {data.projects.map((project) => (
+            {data.projects.filter(p => p.type === "vimeo").map((project) => (
               <WorkCard
                 key={project.id}
-                img={project.imageSrc}
-                name={project.title}
-                description={project.description}
-                onClick={() => window.open(project.url)}
+                project={project}
               />
             ))}
           </div>
         </div>
 
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
-          <h1 className="tablet:m-10 text-2xl text-bold">Services.</h1>
+          <h1 className="text-2xl font-bold">App Projects</h1>
+
+          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
+            {data.projects.filter(p => p.type !== "vimeo").map((project) => (
+              <WorkCard
+                key={project.id}
+                project={project}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
+          <h1 className="tablet:m-10 text-2xl font-bold">Services</h1>
           <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
             {data.services.map((service, index) => (
               <ServiceCard
@@ -129,12 +158,6 @@ export default function Home() {
             </Link>
           </div>
         )}
-        <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-          <h1 className="tablet:m-10 text-2xl text-bold">About.</h1>
-          <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
-            {data.aboutpara}
-          </p>
-        </div>
         <Footer />
       </div>
     </div>
