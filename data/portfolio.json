@@ -8,6 +8,12 @@
   "showBlog": false,
   "darkMode": true,
   "socials": [],
+  "stills": [
+    { "id": "1", "imageSrc": "/banquet-still.png" },
+    { "id": "2", "imageSrc": "/boba-still.png" },
+    { "id": "3", "imageSrc": "/boat-still.png" },
+    { "id": "4", "imageSrc": "/beach-still.png" }
+  ],
   "projects": [
     {
       "id": "1",

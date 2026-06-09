@@ -5,6 +5,47 @@ const CARD_HEIGHT = "600px";
 const cardFrame = "overflow-hidden rounded-lg transition-all ease-out duration-300 w-full";
 
 const WorkCard = ({ project }) => {
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+
+  if (project.type === "still") {
+    return (
+      <>
+        <div
+          className="overflow-hidden rounded-lg p-2 laptop:p-4 cursor-pointer"
+          onClick={() => setLightboxOpen(true)}
+        >
+          <div className={`${cardFrame} group`} style={{ height: CARD_HEIGHT }}>
+            <img
+              src={project.imageSrc}
+              alt="still"
+              className="w-full h-full object-cover group-hover:scale-105 transition-all ease-out duration-300"
+            />
+          </div>
+        </div>
+
+        {lightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              className="absolute top-5 right-5 text-white text-3xl font-light leading-none hover:opacity-70 transition-opacity"
+              onClick={() => setLightboxOpen(false)}
+            >
+              ✕
+            </button>
+            <img
+              src={project.imageSrc}
+              alt="still"
+              className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        )}
+      </>
+    );
+  }
+
   if (project.type === "vimeo") {
     return (
       <div

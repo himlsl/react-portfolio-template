@@ -105,10 +105,19 @@ export default function Home() {
                 <img
                   src="/me1.png"
                   alt="Nathan"
-                  className="relative rounded-2xl object-cover w-72 laptop:w-full max-w-sm"
+                  className="relative rounded-2xl object-cover w-96 laptop:w-full max-w-lg"
                 />
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
+          <h1 className="text-2xl font-bold">Still Frames</h1>
+          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
+            {data.stills.map((still) => (
+              <WorkCard key={still.id} project={{ ...still, type: "still" }} />
+            ))}
           </div>
         </div>
 
